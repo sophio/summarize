@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "AI Text Summarizer",
+  "version": "1.0",
+  "description": "使用 AI 总结文本，可右键总结选中文本，也可点击按钮总结整个页面",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:5000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
