@@ -12,7 +12,8 @@ python server.py
 conda activate your_env
 ## 进入llama.cpp 源码目录下/build/bin
 ./llama-server -m ~/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf  --host 0.0.0.0 --port 8081 -ngl 2
-就可以使用了，具体的安装步骤如下所示
+
+# 具体的安装步骤如下所示
 
 ## 1. 环境确认
 ### 1.1 确保已安装基础工具
