@@ -5,6 +5,14 @@
 参数量：11 亿参数，仅需 500MB~1GB 内存。
 用途：通用文本生成、问答、摘要。
 优势：专为低资源设备优化，支持 CPU 实时推理。
+#  如何使用该插件：
+## 进入server文件夹，运行
+python server.py
+## 打开虚拟环境
+conda activate your_env
+## 进入llama.cpp 源码目录下/build/bin
+./llama-server -m ~/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf  --host 0.0.0.0 --port 8081 -ngl 2
+就可以使用了，具体的安装步骤如下所示
 
 ## 1. 环境确认
 ### 1.1 确保已安装基础工具
@@ -115,7 +123,7 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --data '{"prompt": "世界上最大的鱼是什么？", "n_predict": 128}'
 
-## 报错
+## 8.报错
 如果出现以下错误
 main: couldn't bind HTTP server socket, hostname: 0.0.0.0, port: 8080
 端口 8080 可能已被其他进程占用。你可以通过以下命令检查端口占用情况：
@@ -127,7 +135,7 @@ sudo netstat -tuln | grep 8080
 sudo lsof -i :8080  # 查看占用端口的进程
 sudo kill -9 <PID>  # 终止进程
 
-## 替代方案建议
+## 9.替代方案建议
 如果 TinyLlama-1.1B 效果不足，可尝试以下模型：
 Phi-3-mini (3.8B) - 微软轻量级模型，推理能力更强
 下载地址
