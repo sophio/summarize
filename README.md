@@ -7,11 +7,11 @@ Features:
 - Advantages: Optimized for low-resource devices, supports real-time inference on CPU.
 
 # How to use this plugin:
-## Enter the server folder and run
+### Enter the server folder and run
 python server.py
-## Activate the virtual environment
+### Activate the virtual environment
 conda activate your_env
-## Enter the llama.cpp source directory under /build/bin
+### Enter the llama.cpp source directory under /build/bin
 ./llama-server -m ~/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf --host 0.0.0.0 --port 8081 -ngl 2
 
 # Detailed installation steps are as follows
