@@ -26,19 +26,16 @@ async function summarizeText(text) {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
- // console.log("Extension installed");
   chrome.contextMenus.create({
     id: "summarizeText",
-    title: "AI 总结所选文本",
+    title: "AI Summarize Selected Text",
     contexts: ["selection"]
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
- // console.log("Context menu clicked");
   if (info.menuItemId === "summarizeText") {
     const selectedText = info.selectionText;
-  //  console.log("Selected text:", selectedText);
     
     fetch('http://localhost:5000/summarize', {
       method: 'POST',
@@ -49,19 +46,17 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     })
     .then(response => response.json())
     .then(data => {
-    //  console.log("Summary received:", data.summary);
       alert(data.summary);
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('总结失败：' + error);
+      alert('Summary failed:' + error);
     });
   }
 });
 
-// 监听来自 popup.js 的消息
+// Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
- // console.log("Message received in background.js:", request);
   if (request.action === "executeScript") {
     chrome.scripting.executeScript({
       target: { tabId: sender.tab.id },

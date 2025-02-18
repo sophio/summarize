@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AI Text Summarizer",
   "version": "1.0",
-  "description": "使用 AI 总结文本，可右键总结选中文本，也可点击按钮总结整个页面",
+  "description": "Use AI to summarize text, right-click to summarize selected text, or click a button to summarize the entire page",
   "permissions": [
     "contextMenus",
     "activeTab",
