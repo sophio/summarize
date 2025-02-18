@@ -1,7 +1,7 @@
-console.log("Background script loaded");
+//console.log("Background script loaded");
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("Extension installed");
+  //console.log("Extension installed");
   chrome.contextMenus.create({
     id: "summarizeText",
     title: "AI 总结所选文本",
@@ -10,10 +10,10 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  console.log("Context menu clicked");
+ // console.log("Context menu clicked");
   if (info.menuItemId === "summarizeText") {
     const selectedText = info.selectionText;
-    console.log("Selected text:", selectedText);
+  //  console.log("Selected text:", selectedText);
     
     fetch('http://127.0.0.1:5000/summarize', {
       method: 'POST',
