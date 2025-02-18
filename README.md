@@ -95,10 +95,19 @@ curl http://localhost:8080/v1/chat/completions \
     "model": "tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
     "messages": [{"role": "user", "content": "你好，介绍一下你自己"}]
   }'
-## 6.启用 GPU 加速（未加速，下一步）
-如果已安装 CUDA，可以启用 GPU 加速：
-./llama-server -m ~/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf --n-gpu-layers 20
---n-gpu-layers 参数指定使用 GPU 的层数。
+## 6.启用 GPU 加速
+安装好GPU驱动和CUDA后，运行：
+nvcc -V
+应该可以看到 CUDA 编译器的版本信息。
+### 进入 llama.cpp 源码目录，清理上次构建
+make clean
+### 编译时启用 CUDA 后端（例如，如果你的 GPU 支持 CUDA，并且你已经正确安装了 CUDA Toolkit）：
+LLAMA_CUBLAS=1 make
+这将编译出支持 CUDA 加速的可执行文件（注意，llama.cpp 的 CUDA 支持依赖于你的 GPU 驱动和 CUDA 环境配置）
+### 运行 llama.cpp GPU 版
+在 llama.cpp 目录下，启动模型时指定 GPU 相关参数。例如：
+./llama-cli -m ~/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf  -p "你好" -ngl 2
+其中 -ngl 参数（或 --gpu-layers）用来控制加载到 GPU 的层数。你可以根据你的 GPU 显存情况调整这个数值。
 ## 7.通过 API 进行访问
 一旦服务器启动，您可以通过 HTTP POST 请求与模型交互。例如，使用 curl 命令行工具：
 curl --request POST \
